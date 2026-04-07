@@ -1,0 +1,167 @@
+export type PanelFieldType = 'number' | 'select' | 'integer';
+
+export interface PanelField {
+  key: string;
+  name: string;
+  unit?: string;
+  type: PanelFieldType;
+  referenceLow?: number;
+  referenceHigh?: number;
+  options?: string[];
+  placeholder?: string;
+  aliases?: string[];
+}
+
+export const PANEL_FIELDS: Record<string, PanelField[]> = {
+  cbc: [
+    { key: 'gender', name: 'Gender', type: 'select', options: ['female', 'male'], aliases: ['sex', 'sex male', 'sex female'] },
+    { key: 'hemoglobin', name: 'Hemoglobin', type: 'number', unit: 'g/dL', referenceLow: 12, referenceHigh: 17.5, placeholder: '13.8', aliases: ['hgb', 'hb'] },
+    { key: 'rbc_count', name: 'RBC Count', type: 'number', unit: 'mill/cumm', referenceLow: 4.5, referenceHigh: 5.5, placeholder: '5.2', aliases: ['total rbc count', 'rbc'] },
+    { key: 'pcv', name: 'Packed Cell Volume', type: 'number', unit: '%', referenceLow: 40, referenceHigh: 50, placeholder: '45', aliases: ['hematocrit', 'pcv'] },
+    { key: 'mch', name: 'MCH', type: 'number', unit: 'pg', referenceLow: 27, referenceHigh: 33, placeholder: '29' },
+    { key: 'mchc', name: 'MCHC', type: 'number', unit: 'g/dL', referenceLow: 32, referenceHigh: 36, placeholder: '34' },
+    { key: 'mcv', name: 'MCV', type: 'number', unit: 'fL', referenceLow: 80, referenceHigh: 100, placeholder: '89' },
+    { key: 'rdw', name: 'RDW', type: 'number', unit: '%', referenceLow: 11.6, referenceHigh: 14.0, placeholder: '13.2', aliases: ['red cell distribution width'] },
+    { key: 'wbc_count', name: 'WBC Count', type: 'number', unit: 'cumm', referenceLow: 4000, referenceHigh: 11000, placeholder: '9000', aliases: ['total wbc count', 'wbc'] },
+    { key: 'neutrophils', name: 'Neutrophils', type: 'number', unit: '%', referenceLow: 50, referenceHigh: 62, placeholder: '60' },
+    { key: 'lymphocytes', name: 'Lymphocytes', type: 'number', unit: '%', referenceLow: 20, referenceHigh: 40, placeholder: '31' },
+    { key: 'eosinophils', name: 'Eosinophils', type: 'number', unit: '%', referenceLow: 0, referenceHigh: 6, placeholder: '1' },
+    { key: 'monocytes', name: 'Monocytes', type: 'number', unit: '%', referenceLow: 0, referenceHigh: 10, placeholder: '7' },
+    { key: 'basophils', name: 'Basophils', type: 'number', unit: '%', referenceLow: 0, referenceHigh: 2, placeholder: '1' },
+    { key: 'platelet_count', name: 'Platelet Count', type: 'number', unit: 'cumm', referenceLow: 150000, referenceHigh: 410000, placeholder: '250000', aliases: ['platelets', 'plt'] },
+  ],
+  hba1c: [
+    { key: 'pregnancies', name: 'Pregnancies', type: 'integer', placeholder: '0' },
+    { key: 'glucose', name: 'Glucose', type: 'number', unit: 'mg/dL', referenceLow: 70, referenceHigh: 140, placeholder: '110', aliases: ['fasting glucose', 'blood glucose', 'fbs', 'rbs'] },
+    { key: 'blood_pressure', name: 'Blood Pressure', type: 'number', unit: 'mmHg', referenceLow: 60, referenceHigh: 120, placeholder: '78', aliases: ['bp'] },
+    { key: 'skin_thickness', name: 'Skin Thickness', type: 'number', unit: 'mm', placeholder: '20' },
+    { key: 'insulin', name: 'Insulin', type: 'number', unit: 'uIU/mL', placeholder: '85' },
+    { key: 'bmi', name: 'BMI', type: 'number', referenceLow: 18.5, referenceHigh: 24.9, placeholder: '24.2' },
+    { key: 'diabetes_pedigree_function', name: 'Diabetes Pedigree Function', type: 'number', placeholder: '0.45' },
+    { key: 'age', name: 'Age', type: 'integer', placeholder: '34' },
+  ],
+  kft: [
+    { key: 'age', name: 'Age', type: 'integer', placeholder: '42' },
+    { key: 'bp', name: 'Blood Pressure', type: 'number', unit: 'mmHg', referenceLow: 60, referenceHigh: 120, placeholder: '80', aliases: ['blood pressure'] },
+    { key: 'sg', name: 'Specific Gravity', type: 'number', referenceLow: 1.005, referenceHigh: 1.03, placeholder: '1.02', aliases: ['sp gravity'] },
+    { key: 'al', name: 'Albumin', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 30, placeholder: '15', aliases: ['urine albumin', 'protein'] },
+    { key: 'su', name: 'Sugar', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 15, placeholder: '8', aliases: ['urine sugar'] },
+    { key: 'bgr', name: 'Blood Glucose Random', type: 'number', unit: 'mg/dL', referenceLow: 70, referenceHigh: 140, placeholder: '115', aliases: ['random glucose', 'glucose'] },
+    { key: 'bu', name: 'Blood Urea', type: 'number', unit: 'mg/dL', referenceLow: 7, referenceHigh: 20, placeholder: '18', aliases: ['bun', 'urea'] },
+    { key: 'sc', name: 'Serum Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '0.9', aliases: ['creatinine'] },
+    { key: 'sod', name: 'Sodium', type: 'number', unit: 'mEq/L', referenceLow: 135, referenceHigh: 145, placeholder: '139' },
+    { key: 'pot', name: 'Potassium', type: 'number', unit: 'mEq/L', referenceLow: 3.5, referenceHigh: 5.1, placeholder: '4.2' },
+    { key: 'hemo', name: 'Hemoglobin', type: 'number', unit: 'g/dL', referenceLow: 12, referenceHigh: 17.5, placeholder: '14.1', aliases: ['hgb', 'hb'] },
+    { key: 'pcv', name: 'Packed Cell Volume', type: 'number', unit: '%', referenceLow: 36, referenceHigh: 50, placeholder: '42' },
+    { key: 'wbcc', name: 'White Blood Cell Count', type: 'number', unit: '/cumm', referenceLow: 4000, referenceHigh: 11000, placeholder: '7200' },
+    { key: 'rbcc', name: 'Red Blood Cell Count', type: 'number', unit: 'million/cumm', referenceLow: 4.0, referenceHigh: 5.9, placeholder: '4.8' },
+  ],
+  urine: [
+    { key: 'sg', name: 'Specific Gravity', type: 'number', referenceLow: 1.005, referenceHigh: 1.03, placeholder: '1.02', aliases: ['sp gravity'] },
+    { key: 'al', name: 'Albumin', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 30, placeholder: '12' },
+    { key: 'su', name: 'Sugar', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 15, placeholder: '0' },
+    { key: 'bgr', name: 'Blood Glucose Random', type: 'number', unit: 'mg/dL', referenceLow: 70, referenceHigh: 140, placeholder: '95' },
+    { key: 'bu', name: 'Blood Urea', type: 'number', unit: 'mg/dL', referenceLow: 7, referenceHigh: 20, placeholder: '18' },
+    { key: 'sc', name: 'Serum Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '0.8' },
+    { key: 'sod', name: 'Sodium', type: 'number', unit: 'mEq/L', referenceLow: 135, referenceHigh: 145, placeholder: '140' },
+    { key: 'pot', name: 'Potassium', type: 'number', unit: 'mEq/L', referenceLow: 3.5, referenceHigh: 5.1, placeholder: '4.1' },
+    { key: 'hemo', name: 'Hemoglobin', type: 'number', unit: 'g/dL', referenceLow: 12, referenceHigh: 17.5, placeholder: '13.9' },
+  ],
+  thyroid: [
+    { key: 'age', name: 'Age', type: 'integer', placeholder: '36' },
+    { key: 'sex', name: 'Sex', type: 'select', options: ['female', 'male'] },
+    { key: 'on_thyroxine', name: 'On Thyroxine', type: 'select', options: ['0', '1'] },
+    { key: 'tsh', name: 'TSH', type: 'number', unit: 'uIU/mL', referenceLow: 0.4, referenceHigh: 4.0, placeholder: '2.1' },
+    { key: 't3', name: 'T3', type: 'number', unit: 'ng/mL', referenceLow: 0.8, referenceHigh: 2.0, placeholder: '1.3', aliases: ['ft3', 'free t3'] },
+    { key: 'tt4', name: 'T4', type: 'number', unit: 'ug/dL', referenceLow: 4.5, referenceHigh: 12.0, placeholder: '8.9', aliases: ['tt4', 'ft4', 'free t4'] },
+    { key: 't4u', name: 'T4U', type: 'number', referenceLow: 0.8, referenceHigh: 1.2, placeholder: '1.0' },
+    { key: 'fti', name: 'FTI', type: 'number', referenceLow: 4.8, referenceHigh: 12.7, placeholder: '8.7' },
+  ],
+  lft: [
+    { key: 'age', name: 'Age', type: 'integer', placeholder: '45' },
+    { key: 'sex', name: 'Sex', type: 'select', options: ['female', 'male'] },
+    { key: 'alb', name: 'Albumin', type: 'number', unit: 'g/dL', referenceLow: 3.5, referenceHigh: 5.0, placeholder: '4.3' },
+    { key: 'alp', name: 'ALP', type: 'number', unit: 'U/L', referenceLow: 44, referenceHigh: 147, placeholder: '90' },
+    { key: 'alt', name: 'ALT', type: 'number', unit: 'U/L', referenceLow: 7, referenceHigh: 56, placeholder: '28', aliases: ['sgpt'] },
+    { key: 'ast', name: 'AST', type: 'number', unit: 'U/L', referenceLow: 10, referenceHigh: 40, placeholder: '25', aliases: ['sgot'] },
+    { key: 'bil', name: 'Bilirubin', type: 'number', unit: 'mg/dL', referenceLow: 0.1, referenceHigh: 1.2, placeholder: '0.8' },
+    { key: 'chol', name: 'Cholesterol', type: 'number', unit: 'mg/dL', referenceLow: 125, referenceHigh: 200, placeholder: '175' },
+    { key: 'crea', name: 'Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '0.9' },
+    { key: 'ggt', name: 'GGT', type: 'number', unit: 'U/L', referenceLow: 9, referenceHigh: 48, placeholder: '30' },
+    { key: 'prot', name: 'Total Protein', type: 'number', unit: 'g/dL', referenceLow: 6.0, referenceHigh: 8.3, placeholder: '7.1' },
+  ],
+  cardiac: [
+    { key: 'age', name: 'Age', type: 'integer', placeholder: '58' },
+    { key: 'anaemia', name: 'Anaemia', type: 'select', options: ['0', '1'] },
+    { key: 'creatinine_phosphokinase', name: 'Creatinine Phosphokinase', type: 'number', unit: 'mcg/L', placeholder: '180' },
+    { key: 'diabetes', name: 'Diabetes', type: 'select', options: ['0', '1'] },
+    { key: 'ejection_fraction', name: 'Ejection Fraction', type: 'number', unit: '%', referenceLow: 50, referenceHigh: 70, placeholder: '55' },
+    { key: 'high_blood_pressure', name: 'High Blood Pressure', type: 'select', options: ['0', '1'] },
+    { key: 'platelets', name: 'Platelets', type: 'number', unit: 'kiloplatelets/mL', referenceLow: 150, referenceHigh: 450, placeholder: '250' },
+    { key: 'serum_creatinine', name: 'Serum Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '1.0' },
+    { key: 'serum_sodium', name: 'Serum Sodium', type: 'number', unit: 'mEq/L', referenceLow: 135, referenceHigh: 145, placeholder: '139' },
+    { key: 'sex', name: 'Sex', type: 'select', options: ['0', '1'] },
+    { key: 'smoking', name: 'Smoking', type: 'select', options: ['0', '1'] },
+    { key: 'time', name: 'Follow-up Time', type: 'integer', placeholder: '120' },
+  ],
+  bmp: [
+    { key: 'glucose', name: 'Glucose', type: 'number', unit: 'mg/dL', referenceLow: 70, referenceHigh: 99, placeholder: '92' },
+    { key: 'calcium', name: 'Calcium', type: 'number', unit: 'mg/dL', referenceLow: 8.5, referenceHigh: 10.5, placeholder: '9.4' },
+    { key: 'bun', name: 'BUN', type: 'number', unit: 'mg/dL', referenceLow: 7, referenceHigh: 20, placeholder: '15' },
+    { key: 'creatinine', name: 'Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '0.9' },
+    { key: 'sodium', name: 'Sodium', type: 'number', unit: 'mEq/L', referenceLow: 135, referenceHigh: 145, placeholder: '140' },
+    { key: 'potassium', name: 'Potassium', type: 'number', unit: 'mEq/L', referenceLow: 3.5, referenceHigh: 5.1, placeholder: '4.3' },
+  ],
+  cmp: [
+    { key: 'glucose', name: 'Glucose', type: 'number', unit: 'mg/dL', referenceLow: 70, referenceHigh: 99, placeholder: '90' },
+    { key: 'calcium', name: 'Calcium', type: 'number', unit: 'mg/dL', referenceLow: 8.5, referenceHigh: 10.5, placeholder: '9.3' },
+    { key: 'bun', name: 'BUN', type: 'number', unit: 'mg/dL', referenceLow: 7, referenceHigh: 20, placeholder: '14' },
+    { key: 'creatinine', name: 'Creatinine', type: 'number', unit: 'mg/dL', referenceLow: 0.6, referenceHigh: 1.3, placeholder: '0.8' },
+    { key: 'alt', name: 'ALT', type: 'number', unit: 'U/L', referenceLow: 7, referenceHigh: 56, placeholder: '25' },
+    { key: 'ast', name: 'AST', type: 'number', unit: 'U/L', referenceLow: 10, referenceHigh: 40, placeholder: '22' },
+    { key: 'albumin', name: 'Albumin', type: 'number', unit: 'g/dL', referenceLow: 3.5, referenceHigh: 5.0, placeholder: '4.2' },
+  ],
+  lipid: [
+    { key: 'total_cholesterol', name: 'Total Cholesterol', type: 'number', unit: 'mg/dL', referenceLow: 125, referenceHigh: 200, placeholder: '180' },
+    { key: 'ldl', name: 'LDL', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 100, placeholder: '95' },
+    { key: 'hdl', name: 'HDL', type: 'number', unit: 'mg/dL', referenceLow: 40, referenceHigh: 80, placeholder: '52' },
+    { key: 'triglycerides', name: 'Triglycerides', type: 'number', unit: 'mg/dL', referenceLow: 0, referenceHigh: 150, placeholder: '130' },
+  ],
+  iron: [
+    { key: 'serum_iron', name: 'Serum Iron', type: 'number', unit: 'ug/dL', referenceLow: 60, referenceHigh: 170, placeholder: '92' },
+    { key: 'ferritin', name: 'Ferritin', type: 'number', unit: 'ng/mL', referenceLow: 20, referenceHigh: 250, placeholder: '80' },
+    { key: 'tibc', name: 'TIBC', type: 'number', unit: 'ug/dL', referenceLow: 250, referenceHigh: 450, placeholder: '320' },
+    { key: 'transferrin_saturation', name: 'Transferrin Saturation', type: 'number', unit: '%', referenceLow: 20, referenceHigh: 50, placeholder: '30' },
+  ],
+  vitamins: [
+    { key: 'vitamin_d', name: 'Vitamin D', type: 'number', unit: 'ng/mL', referenceLow: 30, referenceHigh: 100, placeholder: '38' },
+    { key: 'vitamin_b12', name: 'Vitamin B12', type: 'number', unit: 'pg/mL', referenceLow: 200, referenceHigh: 900, placeholder: '420' },
+    { key: 'folate', name: 'Folate', type: 'number', unit: 'ng/mL', referenceLow: 3, referenceHigh: 17, placeholder: '8' },
+  ],
+  electrolyte: [
+    { key: 'sodium', name: 'Sodium', type: 'number', unit: 'mEq/L', referenceLow: 135, referenceHigh: 145, placeholder: '139' },
+    { key: 'potassium', name: 'Potassium', type: 'number', unit: 'mEq/L', referenceLow: 3.5, referenceHigh: 5.1, placeholder: '4.2' },
+    { key: 'chloride', name: 'Chloride', type: 'number', unit: 'mEq/L', referenceLow: 96, referenceHigh: 106, placeholder: '101' },
+    { key: 'bicarbonate', name: 'Bicarbonate', type: 'number', unit: 'mEq/L', referenceLow: 22, referenceHigh: 29, placeholder: '25' },
+    { key: 'magnesium', name: 'Magnesium', type: 'number', unit: 'mg/dL', referenceLow: 1.7, referenceHigh: 2.2, placeholder: '2.0' },
+  ],
+  coag: [
+    { key: 'pt', name: 'PT', type: 'number', unit: 'sec', referenceLow: 11, referenceHigh: 13.5, placeholder: '12.2' },
+    { key: 'inr', name: 'INR', type: 'number', referenceLow: 0.8, referenceHigh: 1.1, placeholder: '1.0' },
+    { key: 'aptt', name: 'aPTT', type: 'number', unit: 'sec', referenceLow: 25, referenceHigh: 35, placeholder: '30' },
+    { key: 'fibrinogen', name: 'Fibrinogen', type: 'number', unit: 'mg/dL', referenceLow: 200, referenceHigh: 400, placeholder: '280' },
+  ],
+  hormones: [
+    { key: 'testosterone', name: 'Testosterone', type: 'number', unit: 'ng/dL', placeholder: '450' },
+    { key: 'estrogen', name: 'Estrogen', type: 'number', unit: 'pg/mL', placeholder: '80' },
+    { key: 'fsh', name: 'FSH', type: 'number', unit: 'mIU/mL', placeholder: '7.5' },
+    { key: 'lh', name: 'LH', type: 'number', unit: 'mIU/mL', placeholder: '6.2' },
+    { key: 'prolactin', name: 'Prolactin', type: 'number', unit: 'ng/mL', placeholder: '12' },
+  ],
+  inflammatory: [
+    { key: 'crp', name: 'CRP', type: 'number', unit: 'mg/L', referenceLow: 0, referenceHigh: 5, placeholder: '3.1' },
+    { key: 'esr', name: 'ESR', type: 'number', unit: 'mm/hr', referenceLow: 0, referenceHigh: 20, placeholder: '12' },
+    { key: 'ferritin', name: 'Ferritin', type: 'number', unit: 'ng/mL', referenceLow: 20, referenceHigh: 250, placeholder: '90' },
+    { key: 'procalcitonin', name: 'Procalcitonin', type: 'number', unit: 'ng/mL', referenceLow: 0, referenceHigh: 0.1, placeholder: '0.03' },
+  ],
+};
